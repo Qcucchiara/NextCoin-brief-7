@@ -1,4 +1,4 @@
-import { RegisterInput } from '@/utils/types'
+import { RegisterInput } from '@/utils/types/formTypes'
 import axios from 'axios'
 import { UseFormSetError } from 'react-hook-form'
 

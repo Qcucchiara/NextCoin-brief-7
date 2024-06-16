@@ -1,3 +1,11 @@
+import { Footer } from '@/components/Footer'
+import { Header } from '@/components/nav/Header'
+import { SectionAboutOurServices } from '@/components/sections/SectionAboutOurServices'
+import { SectionAboutUs } from '@/components/sections/SectionAboutUs'
+import { SectionCryptos } from '@/components/sections/SectionCryptos'
+import { SectionFonctions } from '@/components/sections/SectionFonctions'
+import { SectionJoinNow } from '@/components/sections/SectionJoinNow'
+import { SectionLanding } from '@/components/sections/SectionLanding'
 import { Button } from '@/components/ui/button'
 import {
   Table,
@@ -12,30 +20,17 @@ import Link from 'next/link'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Button asChild>
-        <Link href={'/test'}>go to test</Link>
-      </Button>
-
-      <Table>
-        <TableCaption>A list of your recent invoices.</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[100px]">Invoice</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead className="text-right">Amount</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <TableRow>
-            <TableCell className="font-medium">INV001</TableCell>
-            <TableCell>Paid</TableCell>
-            <TableCell>Credit Card</TableCell>
-            <TableCell className="text-right">$250.00</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </main>
+    <>
+      <Header />
+      <main>
+        <SectionLanding />
+        <SectionCryptos />
+        <SectionFonctions />
+        <SectionAboutUs />
+        <SectionAboutOurServices />
+        <SectionJoinNow />
+      </main>
+      <Footer />
+    </>
   )
 }

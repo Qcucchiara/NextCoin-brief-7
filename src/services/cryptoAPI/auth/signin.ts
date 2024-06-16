@@ -1,10 +1,10 @@
-import { SigninType } from '@/utils/types'
+import { LoginInput } from '@/utils/types/formTypes'
 import axios from 'axios'
 import { UseFormSetError } from 'react-hook-form'
 
 export async function signin(
-  body: SigninType,
-  setError: UseFormSetError<SigninType>
+  body: LoginInput,
+  setError: UseFormSetError<LoginInput>
 ) {
   const url = `${process.env.NEXT_PUBLIC_API_URL}auth/signin`
 
