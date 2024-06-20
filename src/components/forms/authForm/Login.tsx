@@ -15,6 +15,9 @@ import {
 import { Input } from '../../ui/input'
 import { Button } from '../../ui/button'
 import { formLogin } from '@/validations/forms'
+import { signin } from '@/services/cryptoAPI/auth/signin'
+import { stringify } from 'querystring'
+import { AuthData } from '@/utils/types/cryptoTypes'
 
 export const Login = () => {
   const form = useForm<z.infer<typeof formLogin>>({
@@ -25,7 +28,29 @@ export const Login = () => {
     },
   })
   function onSubmit(values: z.infer<typeof formLogin>) {
-    console.log(values)
+    signin(values).then((res: { data: AuthData; status: number } | void) => {
+      console.log(res)
+      if (res && res.status === 200) {
+        const userData = {
+          firstName: res.data.user.firstName,
+          lastName: res.data.user.lastName,
+          email: res.data.user.email,
+          roleName: res.data.user.Role.name,
+          pseudo: res.data.user.pseudo,
+        }
+        localStorage.setItem('token', res.data.access_token)
+        // localStorage.setItem('userData', JSON.stringify(userData))
+        localStorage.setItem(
+          'userHasCrypto',
+          JSON.stringify({
+            values: res.data.user.UserHasCrypto,
+            date: new Date(),
+          })
+        )
+      } else {
+        console.log({ error: res })
+      }
+    })
   }
   return (
     <div className=" m-2 w-[600px] mb-20">

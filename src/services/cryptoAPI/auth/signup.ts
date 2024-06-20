@@ -1,11 +1,9 @@
+import { ResponseFailed, ResponseSuccess } from '@/utils/types/apiTypes'
 import { RegisterInput } from '@/utils/types/formTypes'
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { UseFormSetError } from 'react-hook-form'
 
-export async function signup(
-  body: RegisterInput,
-  setError: UseFormSetError<RegisterInput>
-) {
+export async function signup(body: RegisterInput) {
   const url = `${process.env.NEXT_PUBLIC_API_URL}auth/signup`
 
   const data = {
@@ -28,13 +26,13 @@ export async function signup(
   }
   return axios
     .post(url, data, axiosConfig)
-    .then((res) => {
+    .then((res: AxiosResponse) => {
+      const data = res.data
       console.log('resultat', res)
       return res
     })
-    .catch((e: any) => {
+    .catch((e: ResponseFailed) => {
       // throw new Error(e)
-      // console.log(e.response.data.message)
-      setError('root', { type: 'manual', message: e.response.data.message })
+      console.log(e)
     })
 }

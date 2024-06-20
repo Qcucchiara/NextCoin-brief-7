@@ -2,9 +2,15 @@ import * as z from 'zod'
 
 export const formRegister = z
   .object({
-    firstName: z.string().min(3),
-    lastName: z.string().min(3),
-    pseudo: z.string().min(3),
+    firstName: z.string().min(3, {
+      message: 'First name must be at least 3 characters.',
+    }),
+    lastName: z.string().min(3, {
+      message: 'Last name must be at least 3 characters.',
+    }),
+    pseudo: z.string().min(3, {
+      message: 'Username must be at least 3 characters.',
+    }),
     city: z.string(),
     email: z.string().email(),
     password: z
@@ -18,7 +24,8 @@ export const formRegister = z
         'Password must contain at least one special character'
       ),
     confirmPassword: z.string(),
-    promoCode: z.string().optional(),
+    promoCode: z.string(),
+    // promoCode: z.string().optional(),
   })
   .refine((data) => data.password === data.confirmPassword, {
     path: ['confirmPassword'],
@@ -45,5 +52,5 @@ export const formTrade = z.object({
 
 export const formOffer = z.object({
   id_crypto: z.string(),
-  amount: z.number().min(1),
+  amount: z.string(),
 })

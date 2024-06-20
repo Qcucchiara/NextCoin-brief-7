@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 export async function historyCrypto(params: string) {
+  console.log(params)
   const url = `${process.env.NEXT_PUBLIC_API_URL}crypto/history/${params}`
   const axiosConfig = {
     headers: {

@@ -1,36 +1,34 @@
-import { Footer } from '@/components/Footer'
-import { Header } from '@/components/nav/Header'
+'use client'
 import { SectionAboutOurServices } from '@/components/sections/SectionAboutOurServices'
 import { SectionAboutUs } from '@/components/sections/SectionAboutUs'
 import { SectionCryptos } from '@/components/sections/SectionCryptos'
 import { SectionFonctions } from '@/components/sections/SectionFonctions'
 import { SectionJoinNow } from '@/components/sections/SectionJoinNow'
 import { SectionLanding } from '@/components/sections/SectionLanding'
-import { Button } from '@/components/ui/button'
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
-import Link from 'next/link'
+import { getCryptos } from '@/services/cryptoAPI/crypto/getCryptos'
+import { sortListHigh } from '@/utils/functions/sortList'
+import { ResponseSuccess } from '@/utils/types/apiTypes'
+import { CryptoData } from '@/utils/types/cryptoTypes'
+import { AxiosResponse } from 'axios'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
+  const [cryptoList, setCryptoList] = useState<CryptoData[]>([])
+  useEffect(() => {
+    getCryptos().then((res: AxiosResponse | void) => {
+      sortListHigh(res?.data).then((res) => {
+        setCryptoList(res)
+      })
+    })
+  }, [])
   return (
-    <>
-      <Header />
-      <main>
-        <SectionLanding />
-        <SectionCryptos />
-        <SectionFonctions />
-        <SectionAboutUs />
-        <SectionAboutOurServices />
-        <SectionJoinNow />
-      </main>
-      <Footer />
-    </>
+    <main>
+      <SectionLanding />
+      <SectionCryptos cryptoList={cryptoList} />
+      <SectionFonctions />
+      <SectionAboutUs />
+      <SectionAboutOurServices />
+      <SectionJoinNow />
+    </main>
   )
 }

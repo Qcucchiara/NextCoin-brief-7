@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 
 export async function getCryptos() {
   const url = `${process.env.NEXT_PUBLIC_API_URL}crypto/all`
@@ -12,7 +12,7 @@ export async function getCryptos() {
   }
   return axios
     .get(url, axiosConfig)
-    .then((res) => {
+    .then((res: AxiosResponse) => {
       return res
     })
     .catch((e) => {

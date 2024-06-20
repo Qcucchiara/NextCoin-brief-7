@@ -15,24 +15,49 @@ import {
 import { Input } from '../../ui/input'
 import { Button } from '../../ui/button'
 import { formRegister } from '@/validations/forms'
+import { signup } from '@/services/cryptoAPI/auth/signup'
+import { ResponseFailed, ResponseSuccess } from '@/utils/types/apiTypes'
+import { AxiosResponse } from 'axios'
+import { AuthData } from '@/utils/types/cryptoTypes'
 
 export const Register = () => {
   const form = useForm<z.infer<typeof formRegister>>({
     mode: 'onChange',
     resolver: zodResolver(formRegister),
     defaultValues: {
-      firstName: 'Quentin',
-      lastName: 'Cucchiara',
-      pseudo: 'Kenkucch',
-      city: 'Chambé',
-      email: 'qcucchiara@gmail.com',
-      password: 'aA12345@',
-      confirmPassword: 'aA12345@',
-      promoCode: 'azerty',
+      firstName: '',
+      lastName: '',
+      pseudo: '',
+      city: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      promoCode: '',
     },
   })
   function onSubmit(values: z.infer<typeof formRegister>) {
     console.log(values)
+    signup(values).then((res: any) => {
+      if (res && res.status === 201) {
+        const userData = {
+          firstName: res.data.user.firstName,
+          lastName: res.data.user.lastName,
+          email: res.data.user.email,
+          pseudo: res.data.user.pseudo,
+        }
+        localStorage.setItem('token', res.data.access_token)
+        // localStorage.setItem('userData', JSON.stringify(userData))
+        localStorage.setItem(
+          'userHasCrypto',
+          JSON.stringify({
+            values: res.data.user.UserHasCrypto,
+            date: new Date(),
+          })
+        )
+      } else {
+        console.log({ error: res })
+      }
+    })
   }
   return (
     <div className=" m-2 w-[600px] mb-20">
@@ -168,9 +193,11 @@ export const Register = () => {
               </FormItem>
             )}
           />
-          <Button className=" float-end" type="submit">
-            Submit
-          </Button>
+          <div className="flex float-end">
+            <Button className="" type="submit">
+              Submit
+            </Button>
+          </div>
         </form>
       </Form>
     </div>

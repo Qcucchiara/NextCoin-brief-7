@@ -1,7 +1,7 @@
-import { SearchCryptoType } from '@/utils/types'
+import { OfferInput } from '@/utils/types/formTypes'
 import axios from 'axios'
 
-export async function buyCrypto(body: SearchCryptoType) {
+export async function buyCrypto(body: OfferInput) {
   const url = `${process.env.NEXT_PUBLIC_API_URL}crypto/buy`
 
   const data = {

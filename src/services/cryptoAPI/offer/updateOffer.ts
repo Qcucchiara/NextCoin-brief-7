@@ -1,7 +1,6 @@
-import { SearchCryptoType } from '@/utils/types'
 import axios from 'axios'
 
-export async function updateOffer(params: string, body: SearchCryptoType) {
+export async function updateOffer(params: string, body: any) {
   const url = `${process.env.NEXT_PUBLIC_API_URL}offer/update${params}`
   const data = {
     id_crypto: body.id_crypto,

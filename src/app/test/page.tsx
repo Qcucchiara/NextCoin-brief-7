@@ -1,41 +1,68 @@
-import React from 'react'
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
+'use client'
 
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion'
-import { CryptoList } from '@/components/crypto/CryptoList'
-import { Login } from '@/components/forms/authForm/Login'
-import { Register } from '@/components/forms/authForm/Register'
+  DynamicList,
+  DynamicListElement,
+} from '@/components/crypto/Lists/DynamicList'
+import React from 'react'
+const tableau = [
+  {
+    description: 'Produit électronique',
+    prix: 299.99,
+    enStock: true,
+  },
+  {
+    description: 'Service de nettoyage',
+    prix: 89.5,
+    enStock: false,
+  },
+  {
+    description: 'Billet de concert',
+    prix: 75.0,
+    enStock: true,
+  },
+  {
+    description: 'Livre de science-fiction',
+    prix: 15.99,
+    enStock: true,
+  },
+  {
+    description: 'Cours de yoga',
+    prix: 30.0,
+    enStock: false,
+  },
+  {
+    description: 'Accès à une application',
+    prix: 9.99,
+    enStock: true,
+  },
+  {
+    description: 'Abonnement à une revue',
+    prix: 50.0,
+    enStock: false,
+  },
+  {
+    description: 'Cours en ligne',
+    prix: 199.99,
+    enStock: true,
+  },
+]
 
 const page = () => {
   return (
-    <>
-      {/* <CryptoList /> */}
-      <Login />
-      <Register />
-      <hr />
-      <hr />
-      <Accordion type="single" collapsible>
-        <AccordionItem value="item-1">
-          <AccordionTrigger>Is it accessible?</AccordionTrigger>
-          <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-    </>
+    <div>
+      <DynamicList
+        tableTitle={'Mes produits'}
+        columns={[
+          { title: 'description', className: ' font-bold' },
+          { title: 'prix' },
+          { title: 'en stock' },
+        ]}
+        dataList={tableau}
+      >
+        <DynamicListElement pagination={3} dataList={tableau} />
+      </DynamicList>
+    </div>
   )
 }
 

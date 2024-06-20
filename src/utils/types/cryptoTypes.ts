@@ -32,7 +32,7 @@ export interface Offer {
   amount: number
   created_at: string
   id_user: string
-  Crypto: Crypto
+  Crypto: CryptoData
 }
 
 export interface UserAssets {
@@ -41,7 +41,7 @@ export interface UserAssets {
   dollarAvailables: number
   pseudo: string
   age: number
-  UserHasCrypto: Crypto[] | Crypto
+  UserHasCrypto: MyCryptoData[]
 }
 
 export interface Signin {
@@ -50,7 +50,7 @@ export interface Signin {
   Role: Role
 }
 
-export interface Crypto {
+export interface CryptoData {
   id: string
   name: string
   value: number
@@ -60,10 +60,16 @@ export interface Crypto {
   updated_at: string
 }
 
+export interface MyCryptoData {
+  Crypto: CryptoData
+  amount: number
+  id: string
+}
+
 export interface Trade {
   Giver: User
   Receiver: User
-  Crypto: Crypto
+  Crypto: CryptoData
   id: string
 }
 
@@ -73,14 +79,14 @@ export interface User {
   pseudo: string
   dollarAvailables: number
 }
-interface UserHasCrypto {
+export interface UserHasCrypto {
   id: string
   id_user: string
   id_crypto: string
   amount: number
   createdAt: string
   updated_at: string
-  Crypto: Crypto
+  Crypto: CryptoData
 }
 export interface UserExtended extends User {
   id: string
@@ -103,7 +109,29 @@ export interface MyTrade {
   amount_traded: number
   created_at: string
   updated_at: string
-  Crypto: Crypto
+  Crypto: CryptoData
   Giver: UserExtended
   Receiver: UserExtended
+}
+
+export interface UserData {
+  id: string
+  firstName: string
+  lastName: string
+  pseudo: string
+  hash: null | any
+  email: string
+  roleId: string
+  isActive: boolean
+  city: string
+  dollarAvailables: number
+  age: number
+  created_at: string
+  updated_at: string
+  UserHasCrypto: UserHasCrypto[]
+  Role: Role
+}
+export interface AuthData {
+  access_token: string
+  user: UserData
 }
