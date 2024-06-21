@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { TableCell, TableRow } from '../ui/table'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { Button } from '../ui/button'
@@ -9,8 +9,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu'
-import { CryptoData } from '@/utils/types/cryptoTypes'
 import { BuyCryptoModal } from './Modals/CryptoModals'
+import { buyCrypto } from '@/services/cryptoAPI/crypto/buyCrypto'
+import toast from 'react-hot-toast'
 
 export const AllCryptoListElement = ({ element }: { element: any }) => {
   return (
@@ -30,12 +31,24 @@ export const AllCryptoListElement = ({ element }: { element: any }) => {
             id="desktop_list_buttons"
             className="flex justify-end max-[650px]:hidden"
           >
-            {/* <Button asChild className="mr-6 w-24">
-            <Link href={''}>
-              <span>Buy</span>
-            </Link>
-          </Button> */}
-            <BuyCryptoModal cryptoId={element.id} />
+            {element.quantity !== 0 && (
+              <Button
+                asChild
+                className="mr-6 w-24"
+                onClick={() => {
+                  buyCrypto({ id_crypto: element.id, amount: 1 }).then(
+                    (res) => {
+                      res?.status === 201
+                        ? toast.success('Token bought')
+                        : toast.error('could not buy')
+                    }
+                  )
+                }}
+              >
+                <span>Buy one</span>
+              </Button>
+            )}
+            {element.quantity !== 0 && <BuyCryptoModal cryptoId={element.id} />}
             <Button asChild className="w-22 mr-6">
               <Link href={`/crypto/${element.name}`}>
                 <span>See more</span>

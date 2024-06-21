@@ -15,13 +15,22 @@ export const formRegister = z
     email: z.string().email(),
     password: z
       .string()
-      .min(8)
-      .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
-      .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
-      .regex(/[0-9]/, 'Password must contain at least one number')
+      .min(8, 'Password should have at least 8 characters')
+      .regex(
+        /[a-z]/,
+        'lowercase, uppercase, number and special character are required'
+      )
+      .regex(
+        /[A-Z]/,
+        'lowercase, uppercase, number and special character are required'
+      )
+      .regex(
+        /[0-9]/,
+        'lowercase, uppercase, number and special character are required'
+      )
       .regex(
         /[!@#$%^&*(),.?":{}|<>]/,
-        'Password must contain at least one special character'
+        'lowercase, uppercase, number and special character are required'
       ),
     confirmPassword: z.string(),
     promoCode: z.string(),

@@ -1,31 +1,25 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import * as z from 'zod'
 
-import { formOffer } from '@/validations/forms'
 import { createOffer } from '@/services/cryptoAPI/offer/createOffer'
-import { Form, FormControl, FormField, FormItem, FormMessage } from '../ui/form'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
-import { send } from 'process'
 import toast from 'react-hot-toast'
-import { AxiosResponse } from 'axios'
 
 export const NewOffer = ({ id_crypto }: { id_crypto: string }) => {
   const [value, setValue] = useState(0)
   const [send, setSend] = useState(false)
 
   useEffect(() => {
-    createOffer({ id_crypto: id_crypto, amount: value }).then((res: any) => {
-      console.log({ id_crypto: id_crypto, amount: value })
-      console.log(res)
-      if (res && res.status === 201) {
-        console.log(res)
-        toast.success(res.statusText)
-      }
-    })
+    value &&
+      createOffer({ id_crypto: id_crypto, amount: value }).then((res: any) => {
+        if (res && res.status === 201) {
+          toast.success(res.statusText)
+        }
+        if (res && res.response?.status === 418) {
+          toast.error(`I'm a Teapot`)
+        }
+      })
     setSend(false)
   }, [send])
 

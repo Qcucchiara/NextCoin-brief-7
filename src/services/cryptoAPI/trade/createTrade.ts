@@ -1,7 +1,7 @@
-import { TradeType } from '@/utils/types'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
-export async function createTrade(body: TradeType) {
+export async function createTrade(body: any) {
   const url = `${process.env.NEXT_PUBLIC_API_URL}trade/create`
   const data = {
     id_offer: body.id_offer,
@@ -20,7 +20,9 @@ export async function createTrade(body: TradeType) {
       return res
     })
     .catch((e) => {
-      // throw new Error(e)
+      e.response.status === 418
+        ? toast.error(`I'm a Teapot`)
+        : toast.error('unexpected error')
       console.log(e)
     })
 }

@@ -15,10 +15,7 @@ export const HistoryCrypto = ({ cryptoId }: { cryptoId: string }) => {
             value: element.value,
           })
         })
-
-        console.log(res)
         setGraphData(graph)
-        // console.log({ graph: graph })
       })
   }, [cryptoId])
 
@@ -41,7 +38,7 @@ export const HistoryCrypto = ({ cryptoId }: { cryptoId: string }) => {
           ]}
           rightAxis={{}}
           leftAxis={null}
-          width={800}
+          width={700}
           height={300}
         />
       )}

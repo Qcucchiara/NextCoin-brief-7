@@ -27,13 +27,23 @@ const page = () => {
         <SectionJoinNow />
       ) : (
         <ResizablePanelGroup direction={'vertical'}>
-          <ResizablePanel defaultSize={50}>
-            <CryptoList myCryptos={null} offers={null} />
-          </ResizablePanel>
-          <ResizableHandle />
-          <ResizablePanel defaultSize={50}>
-            {offers && <CryptoList myCryptos={null} offers={offers} />}
-          </ResizablePanel>
+          <>
+            <h3 className=" font-bold text-center w-full text-lg">
+              List Cryptos
+            </h3>
+            <ResizablePanel defaultSize={50}>
+              <CryptoList myCryptos={null} offers={null} />
+            </ResizablePanel>
+          </>
+          <ResizableHandle className=" z-50" withHandle={true} />
+          <>
+            <h3 className=" font-bold text-center w-full text-lg">
+              List offers
+            </h3>
+            <ResizablePanel defaultSize={50}>
+              {offers && <CryptoList myCryptos={null} offers={offers} />}
+            </ResizablePanel>
+          </>
         </ResizablePanelGroup>
       )}
     </div>

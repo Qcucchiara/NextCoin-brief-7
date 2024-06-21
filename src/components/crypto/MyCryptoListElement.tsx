@@ -11,12 +11,10 @@ import {
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu'
 import { CryptoData, MyCryptoData } from '@/utils/types/cryptoTypes'
-import { createOffer } from '@/services/cryptoAPI/offer/createOffer'
-import { contextSetGraphCrypto } from '@/contexts/ContextSetGraphCrypto'
+import { contextSetGraphCrypto } from '@/contexts/Contexts'
 
 export const MyCryptoListElement = ({ element }: { element: MyCryptoData }) => {
   const [createNewOffer, setCreateNewOffer] = useState<boolean>(false)
-  const [amountForOffer, setAmountToOffer] = useState<number>(0)
   const { setCryyptoIdToDisplay } = useContext(contextSetGraphCrypto)
   // useEffect(() => {
   //   createOffer({ id_crypto: element.Crypto.id, amount: amountForOffer }).then(
@@ -28,7 +26,6 @@ export const MyCryptoListElement = ({ element }: { element: MyCryptoData }) => {
   return (
     <TableRow
       onClick={() => {
-        console.log(element)
         setCryyptoIdToDisplay(element.Crypto.id)
       }}
     >
@@ -43,11 +40,13 @@ export const MyCryptoListElement = ({ element }: { element: MyCryptoData }) => {
       <TableCell>{element.amount}</TableCell>
       <TableCell className="text-right ">
         <div id="desktop_list_buttons" className=" min-[650px]:hidden">
-          <Button asChild className="mr-6 w-24">
-            <Link href={''}>
-              <span>Buy</span>
-            </Link>
-          </Button>
+          {element.Crypto.quantity !== 0 && (
+            <Button asChild className="mr-6 w-24">
+              <Link href={''}>
+                <span>Buy</span>
+              </Link>
+            </Button>
+          )}
           <Button asChild className=" mr-6 w-22">
             <Link href={`/crypto/${element.Crypto.name}`}>
               <span>Sell</span>
@@ -57,7 +56,8 @@ export const MyCryptoListElement = ({ element }: { element: MyCryptoData }) => {
             asChild
             className="w-22"
             onClick={() => {
-              setCreateNewOffer(true)
+              // setCreateNewOffer(true).then(()=>{
+              // })
             }}
           >
             <Link href={`/crypto/${element.Crypto.name}`}>

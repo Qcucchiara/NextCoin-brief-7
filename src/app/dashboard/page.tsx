@@ -11,7 +11,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from '@/components/ui/resizable'
-import { contextSetGraphCrypto } from '@/contexts/ContextSetGraphCrypto'
+import { contextSetGraphCrypto } from '@/contexts/Contexts'
 import { buyCrypto } from '@/services/cryptoAPI/crypto/buyCrypto'
 import { getMyAssets } from '@/services/cryptoAPI/user/getMyAssets'
 import { ResponseSuccess } from '@/utils/types/apiTypes'
@@ -43,7 +43,7 @@ const page = () => {
           direction="horizontal"
           className="max-w-auto overflow-scroll rounded-lg border"
         >
-          <ResizablePanel defaultSize={50} minSize={30}>
+          <ResizablePanel defaultSize={40} minSize={30}>
             <div className=" items-center justify-center p-6">
               {myAssets ? (
                 <MyAssets myAssets={myAssets} />
@@ -64,7 +64,7 @@ const page = () => {
             </div>
           </ResizablePanel>
           <ResizableHandle />
-          <ResizablePanel defaultSize={50}>
+          <ResizablePanel>
             {cryptoIdToDisplay ? (
               <ResizablePanelGroup direction="vertical">
                 <ResizablePanel minSize={45} maxSize={45}>

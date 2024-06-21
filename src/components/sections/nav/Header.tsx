@@ -6,14 +6,16 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { contextRefresh } from '@/contexts/Contexts'
 
 export const Header = () => {
+  // const [refresh, setRefresh] = useState(false)
   return (
     <header className=" sticky top-0 bg-white z-50">
+      {/* <contextRefresh.Provider value={{ refresh, setRefresh }}> */}
       <nav className="bg-white border-gray-200 px-4 md:px-6 py-2.5 dark:bg-gray-800">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <Logo className="" />
@@ -124,6 +126,7 @@ export const Header = () => {
           </div>
         </div>
       </nav>
+      {/* </contextRefresh.Provider> */}
     </header>
   )
 }

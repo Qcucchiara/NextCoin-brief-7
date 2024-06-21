@@ -16,11 +16,10 @@ import { Input } from '../../ui/input'
 import { Button } from '../../ui/button'
 import { formRegister } from '@/validations/forms'
 import { signup } from '@/services/cryptoAPI/auth/signup'
-import { ResponseFailed, ResponseSuccess } from '@/utils/types/apiTypes'
-import { AxiosResponse } from 'axios'
-import { AuthData } from '@/utils/types/cryptoTypes'
+import { useRouter } from 'next/navigation'
 
 export const Register = () => {
+  const { push } = useRouter()
   const form = useForm<z.infer<typeof formRegister>>({
     mode: 'onChange',
     resolver: zodResolver(formRegister),
@@ -54,6 +53,7 @@ export const Register = () => {
             date: new Date(),
           })
         )
+        push('/')
       } else {
         console.log({ error: res })
       }

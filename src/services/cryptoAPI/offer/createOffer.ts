@@ -20,7 +20,6 @@ export async function createOffer(body: OfferInput) {
   return axios
     .post(url, data, axiosConfig)
     .then((res: any) => {
-      res?.response && toast.error(res.response.data.message)
       return res
     })
     .catch((e) => {

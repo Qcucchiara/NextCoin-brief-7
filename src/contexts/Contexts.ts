@@ -5,4 +5,7 @@ export const contextSetGraphCrypto = createContext<any>({
   setCryyptoIdToDisplay: () => {},
 })
 
-export const ContexteDynamicListContent = createContext<any>(null)
+export const contextRefresh = createContext<any>({
+  refresh: false,
+  setRefresh: () => {},
+})

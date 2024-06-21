@@ -6,7 +6,6 @@ import * as z from 'zod'
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,10 +15,11 @@ import { Input } from '../../ui/input'
 import { Button } from '../../ui/button'
 import { formLogin } from '@/validations/forms'
 import { signin } from '@/services/cryptoAPI/auth/signin'
-import { stringify } from 'querystring'
 import { AuthData } from '@/utils/types/cryptoTypes'
+import { useRouter } from 'next/navigation'
 
 export const Login = () => {
+  const { push } = useRouter()
   const form = useForm<z.infer<typeof formLogin>>({
     resolver: zodResolver(formLogin),
     defaultValues: {
@@ -47,6 +47,7 @@ export const Login = () => {
             date: new Date(),
           })
         )
+        push('/dashboard')
       } else {
         console.log({ error: res })
       }

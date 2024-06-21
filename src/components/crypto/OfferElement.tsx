@@ -11,6 +11,8 @@ import {
 } from '../ui/dropdown-menu'
 import { CryptoData, Offer } from '@/utils/types/cryptoTypes'
 import { BuyCryptoModal } from './Modals/CryptoModals'
+import { createTrade } from '@/services/cryptoAPI/trade/createTrade'
+import toast from 'react-hot-toast'
 
 export const OfferElement = ({ element }: { element: Offer }) => {
   return (
@@ -29,10 +31,16 @@ export const OfferElement = ({ element }: { element: Offer }) => {
           id="desktop_list_buttons"
           className="flex justify-end max-[650px]:hidden"
         >
-          <Button asChild className="mr-6 w-24">
-            <Link href={''}>
-              <span>Trade</span>
-            </Link>
+          <Button
+            onClick={() => {
+              createTrade({ id_offer: element.id }).then((res: any) => {
+                res?.status === 201 && toast.success('Trade successfull')
+              })
+            }}
+            asChild
+            className="mr-6 w-24"
+          >
+            <span>Trade</span>
           </Button>
           <Button asChild className="w-22 mr-6">
             <Link href={`/crypto/${element.Crypto.name}`}>

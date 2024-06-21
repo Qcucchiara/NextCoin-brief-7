@@ -16,13 +16,19 @@ export const MyAssets = ({ myAssets }: { myAssets: UserAssets }) => {
   }, [])
 
   return (
-    <div>
+    <>
+      {' '}
       <div>
+        <p className=" font-bold text-xl">
+          My balance: {myAssets.dollarAvailables} $
+        </p>
         <p className=" font-bold text-xl">Estemeed assets: {value} $</p>
       </div>
-      {/* <div className=" h-[200px] overflow-y-scroll"> */}
-      <CryptoList myCryptos={myAssets.UserHasCrypto} offers={null} />
-      {/* </div> */}
-    </div>
+      <div>
+        {/* <div className=" h-[200px] overflow-y-scroll"> */}
+        <CryptoList myCryptos={myAssets.UserHasCrypto} offers={null} />
+        {/* </div> */}
+      </div>
+    </>
   )
 }
