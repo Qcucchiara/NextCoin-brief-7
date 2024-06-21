@@ -54,7 +54,7 @@ const page = () => {
       <DynamicList
         tableTitle={'Mes produits'}
         columns={[
-          { title: 'description', className: ' font-bold' },
+          { title: 'description', className: ' text-black font-bold' },
           { title: 'prix' },
           { title: 'en stock' },
         ]}
