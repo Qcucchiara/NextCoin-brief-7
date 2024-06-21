@@ -1,7 +1,6 @@
-import { NewCryptoType } from '@/utils/types'
 import axios from 'axios'
 
-export async function createCrypto(body: NewCryptoType) {
+export async function createCrypto(body: any) {
   const url = `${process.env.NEXT_PUBLIC_API_URL}crypto/create`
   const data = {
     name: body.name,

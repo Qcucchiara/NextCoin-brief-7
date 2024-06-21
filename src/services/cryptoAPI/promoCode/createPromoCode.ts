@@ -1,7 +1,6 @@
 import axios from 'axios'
-import { PromoCodeType } from '@/utils/types'
 
-export async function createPromoCode(body: PromoCodeType) {
+export async function createPromoCode(body: any) {
   const url = `${process.env.NEXT_PUBLIC_API_URL}promoCode/create`
   const data = {
     name: body.name,

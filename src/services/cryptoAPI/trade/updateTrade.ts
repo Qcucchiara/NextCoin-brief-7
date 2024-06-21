@@ -1,7 +1,6 @@
-import { TradeType } from '@/utils/types'
 import axios from 'axios'
 
-export async function updateTrade(params: string, body: TradeType) {
+export async function updateTrade(params: string, body: any) {
   const url = `${process.env.NEXT_PUBLIC_API_URL}trade/update/${params}`
   const data = {
     id_giver: body.id_giver,

@@ -21,7 +21,7 @@ export async function signin(body: LoginInput) {
 
   return axios
     .post(url, data, axiosConfig)
-    .then((res: ResponseSuccess) => {
+    .then((res: any) => {
       localStorage.setItem('token', res.data.access_token)
       return res
     })
