@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  // output: 'export',
 
   // reactStrictMode: false,
   transpilePackages: ['@mui/x-charts'],
