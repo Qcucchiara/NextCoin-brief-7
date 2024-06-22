@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className + 'w-full min-h-dvh'}>
-        <main>{children}</main>
+        <main className=" h-full w-full px-6">{children}</main>
         <Toaster position="top-right" reverseOrder={false} />
         <Footer />
       </body>

@@ -69,33 +69,40 @@ export const DynamicList = ({
             ? values.map((rowValues: any[], i: number) => (
                 <TableRow key={i + 'Row'}>
                   {rowValues.map((item: any, index: number) => (
-                    <TableCell key={item + index}>{item}</TableCell>
+                    <TableCell
+                      // className={}
+                      key={item + index}
+                    >
+                      {item}
+                    </TableCell>
                   ))}
                 </TableRow>
               ))
             : children}
           {dataList && pagination && (
             <TableRow className=" flex w-full mb-8">
-              {offset > 0 && (
-                <Button
-                  onClick={() => {
-                    setOffset((prev) => prev - pagination)
-                  }}
-                  className=" absolute bottom-4 left-20"
-                >
-                  {'<=='}
-                </Button>
-              )}
-              {pagination + offset <= dataList.length && (
-                <Button
-                  onClick={() => {
-                    setOffset((prev) => prev + pagination)
-                  }}
-                  className=" absolute bottom-4 right-20"
-                >
-                  {'==>'}
-                </Button>
-              )}
+              <TableCell>
+                {offset > 0 && (
+                  <Button
+                    onClick={() => {
+                      setOffset((prev) => prev - pagination)
+                    }}
+                    className=" absolute bottom-4 left-20"
+                  >
+                    {'<=='}
+                  </Button>
+                )}
+                {pagination + offset <= dataList.length && (
+                  <Button
+                    onClick={() => {
+                      setOffset((prev) => prev + pagination)
+                    }}
+                    className=" absolute bottom-4 right-20"
+                  >
+                    {'==>'}
+                  </Button>
+                )}
+              </TableCell>
             </TableRow>
           )}
         </TableBody>
