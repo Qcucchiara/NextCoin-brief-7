@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import { Logo } from '../StaticElements/Logo'
 import Link from 'next/link'
 import { Button } from '../../ui/button'
@@ -9,24 +10,59 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { contextRefresh } from '@/contexts/Contexts'
 
 export const Header = () => {
-  // const [refresh, setRefresh] = useState(false)
+  const [refresh, setRefresh] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
+
+  useEffect(() => {
+    if (!isLoggedIn && localStorage.getItem('token')) {
+      setIsLoggedIn(true)
+    }
+    if (!isAdmin && localStorage.getItem('userData')) {
+      setIsAdmin(true)
+    }
+    setRefresh(false)
+  }, [refresh])
   return (
     <header className=" sticky top-0 bg-white z-50">
-      {/* <contextRefresh.Provider value={{ refresh, setRefresh }}> */}
       <nav className="bg-white border-gray-200 px-4 md:px-6 py-2.5 dark:bg-gray-800">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <Logo className="" />
           <div className="flex gap-4 items-center md:order-2">
-            <Button variant={'outline'} asChild>
-              <Link href="/login">Log in</Link>
-            </Button>
+            {!isLoggedIn ? (
+              <div className="flex gap-4">
+                <Button
+                  variant={'outline'}
+                  asChild
+                  onClick={() => {
+                    setRefresh(true)
+                  }}
+                >
+                  <Link href="/login">Log in</Link>
+                </Button>
+                <Button
+                  asChild
+                  onClick={() => {
+                    setRefresh(true)
+                  }}
+                >
+                  <Link href={'/register'}>Get started</Link>
+                </Button>
+              </div>
+            ) : (
+              <Button
+                asChild
+                onClick={() => {
+                  localStorage.removeItem('token')
+                  setRefresh(true)
+                }}
+              >
+                <Link href={'/'}>Log out</Link>
+              </Button>
+            )}
 
-            <Button asChild>
-              <Link href={'/register'}>Get started</Link>
-            </Button>
             <div className=" md:hidden">
               <DropdownMenu>
                 <DropdownMenuTrigger>
@@ -59,19 +95,16 @@ export const Header = () => {
                   </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className=" w-52">
-                  <DropdownMenuItem>
-                    <Link href={'/'} className=" font-bold">
-                      Home
-                    </Link>
-                  </DropdownMenuItem>
-
+                  <Link href={'/'} className=" font-bold">
+                    <DropdownMenuItem>Home</DropdownMenuItem>
+                  </Link>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <Link href={'/dashboard'}>Dashboard</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Link href={'/marketplace'}>Marketplace</Link>
-                  </DropdownMenuItem>
+                  <Link href={'/dashboard'}>
+                    <DropdownMenuItem>Dashboard</DropdownMenuItem>
+                  </Link>
+                  <Link href={'/marketplace'}>
+                    <DropdownMenuItem>Marketplace</DropdownMenuItem>
+                  </Link>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
@@ -106,27 +139,10 @@ export const Header = () => {
                   Marketplace
                 </Link>
               </li>
-              {/* <li>
-                <Link
-                  href="#"
-                  className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Team
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Contact
-                </Link>
-              </li> */}
             </ul>
           </div>
         </div>
       </nav>
-      {/* </contextRefresh.Provider> */}
     </header>
   )
 }

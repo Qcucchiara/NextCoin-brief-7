@@ -15,20 +15,34 @@ export interface ColumnsDynamicList {
   className?: string | null
   sort?: 'letters' | 'number' | 'IN PROGRESS, NOT WORKING'
 }
-
 export const DynamicList = ({
   tableTitle,
   columns,
   dataList,
   children,
+  pagination,
 }: {
   tableTitle: string
   columns: ColumnsDynamicList[]
   dataList: any
-  children: React.ReactNode
+  children?: React.ReactNode
+  pagination?: number
 }) => {
-  useEffect(() => {}, [tableTitle, columns, dataList])
-
+  const [values, setValues] = useState<any[][]>([])
+  const [offset, setOffset] = useState(0)
+  useEffect(() => {
+    if (dataList && dataList.length > 0) {
+      if (pagination) {
+        setValues(
+          dataList
+            .slice(offset, pagination + offset)
+            .map((item: any) => Object.values(item))
+        )
+      } else {
+        setValues(dataList.map((item: any) => Object.values(item)))
+      }
+    }
+  }, [dataList, offset])
   return (
     <>
       <h2>{tableTitle}</h2>
@@ -50,7 +64,41 @@ export const DynamicList = ({
               : dataList && dataList}
           </TableRow>
         </TableHeader>
-        <TableBody>{dataList && children}</TableBody>
+        <TableBody>
+          {dataList && !children
+            ? values.map((rowValues: any[], i: number) => (
+                <TableRow key={i + 'Row'}>
+                  {rowValues.map((item: any, index: number) => (
+                    <TableCell key={item + index}>{item}</TableCell>
+                  ))}
+                </TableRow>
+              ))
+            : children}
+          {dataList && pagination && (
+            <TableRow className=" flex w-full mb-8">
+              {offset > 0 && (
+                <Button
+                  onClick={() => {
+                    setOffset((prev) => prev - pagination)
+                  }}
+                  className=" absolute bottom-4 left-20"
+                >
+                  {'<=='}
+                </Button>
+              )}
+              {pagination + offset <= dataList.length && (
+                <Button
+                  onClick={() => {
+                    setOffset((prev) => prev + pagination)
+                  }}
+                  className=" absolute bottom-4 right-20"
+                >
+                  {'==>'}
+                </Button>
+              )}
+            </TableRow>
+          )}
+        </TableBody>
       </Table>
     </>
   )

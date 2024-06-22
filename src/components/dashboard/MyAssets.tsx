@@ -17,7 +17,6 @@ export const MyAssets = ({ myAssets }: { myAssets: UserAssets }) => {
 
   return (
     <>
-      {' '}
       <div>
         <p className=" font-bold text-xl">
           My balance: {myAssets.dollarAvailables} $

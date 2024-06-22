@@ -23,8 +23,14 @@ export const Login = () => {
   const form = useForm<z.infer<typeof formLogin>>({
     resolver: zodResolver(formLogin),
     defaultValues: {
-      email: 'quentin.admin@crypto.to',
-      password: 'password',
+      email: `${
+        process.env.NEXT_PUBLIC_LOGIN_EMAIL &&
+        process.env.NEXT_PUBLIC_LOGIN_EMAIL
+      }`,
+      password: `${
+        process.env.NEXT_PUBLIC_LOGIN_PASSWORD &&
+        process.env.NEXT_PUBLIC_LOGIN_PASSWORD
+      }`,
     },
   })
   function onSubmit(values: z.infer<typeof formLogin>) {

@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/resizable'
 import Image from 'next/image'
 import { HistoryCrypto } from '@/components/crypto/HistoryCrypto'
+import { Header } from '@/components/sections/nav/Header'
 
 const page = ({ params }: { params: { cryptoName: string } }) => {
   const [data, setData] = useState<CryptoData | undefined>()
@@ -49,6 +50,7 @@ const page = ({ params }: { params: { cryptoName: string } }) => {
 
   return (
     <>
+      <Header />
       <ResizablePanelGroup direction="horizontal">
         <ResizablePanel minSize={50}>
           {data && (

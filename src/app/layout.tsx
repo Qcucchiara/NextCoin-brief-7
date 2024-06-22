@@ -19,9 +19,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className + 'w-full min-h-dvh'}>
-        <Header />
-        <Toaster position="top-right" reverseOrder={false} />
         <main>{children}</main>
+        <Toaster position="top-right" reverseOrder={false} />
         <Footer />
       </body>
     </html>

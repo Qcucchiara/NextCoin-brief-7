@@ -21,6 +21,7 @@ import { Blocks, Grid } from 'react-loader-spinner'
 import { InfoOnCrypto } from '@/components/crypto/InfoOnCrypto'
 import { NewOffer } from '@/components/forms/NewOffer'
 import { dividerClasses } from '@mui/material'
+import { Header } from '@/components/sections/nav/Header'
 
 const page = () => {
   const [myAssets, setMyAssets] = useState<any>()
@@ -33,6 +34,7 @@ const page = () => {
   }, [])
   return (
     <>
+      <Header />
       <div>
         <h2>Welcome</h2>
       </div>
@@ -43,7 +45,7 @@ const page = () => {
           direction="horizontal"
           className="max-w-auto overflow-scroll rounded-lg border"
         >
-          <ResizablePanel defaultSize={40} minSize={30}>
+          <ResizablePanel defaultSize={50} minSize={40}>
             <div className=" items-center justify-center p-6">
               {myAssets ? (
                 <MyAssets myAssets={myAssets} />
