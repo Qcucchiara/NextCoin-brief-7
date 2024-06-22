@@ -24,12 +24,14 @@ export const Login = () => {
     resolver: zodResolver(formLogin),
     defaultValues: {
       email: `${
-        process.env.NEXT_PUBLIC_LOGIN_EMAIL &&
         process.env.NEXT_PUBLIC_LOGIN_EMAIL
+          ? process.env.NEXT_PUBLIC_LOGIN_EMAIL
+          : ''
       }`,
       password: `${
-        process.env.NEXT_PUBLIC_LOGIN_PASSWORD &&
         process.env.NEXT_PUBLIC_LOGIN_PASSWORD
+          ? process.env.NEXT_PUBLIC_LOGIN_PASSWORD
+          : ''
       }`,
     },
   })
