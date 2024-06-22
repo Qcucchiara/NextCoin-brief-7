@@ -45,7 +45,7 @@ export const AllCryptoListElement = ({ element }: { element: any }) => {
                   )
                 }}
               >
-                <span className=" text-yellow-600">Buy one</span>
+                <span>Buy one</span>
               </Button>
             )}
             {element.quantity !== 0 && <BuyCryptoModal cryptoId={element.id} />}
