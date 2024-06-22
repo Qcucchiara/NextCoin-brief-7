@@ -26,7 +26,7 @@ export default function Home() {
       <Header />
       <main>
         <SectionLanding />
-        {cryptoList && <SectionCryptos cryptoList={cryptoList} />}
+        {cryptoList.length !== 0 && <SectionCryptos cryptoList={cryptoList} />}
         <SectionFonctions />
         <SectionAboutUs />
         <SectionAboutOurServices />
