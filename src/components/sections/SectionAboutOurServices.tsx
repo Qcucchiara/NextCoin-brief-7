@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 export const SectionAboutOurServices = () => {
@@ -6,26 +7,24 @@ export const SectionAboutOurServices = () => {
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div className="max-w-screen-lg text-gray-500 sm:text-lg dark:text-gray-400">
           <h2 className="mb-4 text-4xl font-bold text-gray-900 dark:text-white">
-            Powering innovation at{' '}
-            <span className="font-extrabold">200,000+</span> companies worldwide
+            I'm a beginner at web developpement
           </h2>
           <p className="mb-4 font-light">
-            Track work across the enterprise through an open, collaborative
-            platform. Link issues across Jira and ingest data from other
-            software development tools, so your IT support and operations teams
-            have richer contextual information to rapidly respond to requests,
-            incidents, and changes.
+            On this project i learned the importance of planing things in
+            advance, i had a hard time thinking the architecture of the website
+            and how to do my components. to be honest, i'm not satisfied by the
+            result, i don't like the code of my components who lack reusability,
+            and the responsive is lacking at time.
           </p>
           <p className="mb-4 font-medium">
-            Deliver great service experiences fast - without the complexity of
-            traditional ITSM solutions.Accelerate critical development work,
-            eliminate toil, and deploy changes with ease.
+            That said, i had fun and i will probably continue to upgrade it over
+            time.
           </p>
-          <a
-            href="#"
+          <Link
+            href="https://github.com/Qcucchiara/NextCoin-brief-7"
             className="inline-flex items-center font-medium text-blue-600 hover:text-blue-800 dark:text-blue-500 dark:hover:text-blue-700"
           >
-            Learn more
+            My Git-hub
             <svg
               className="ml-1 w-6 h-6"
               fill="currentColor"
@@ -38,7 +37,7 @@ export const SectionAboutOurServices = () => {
                 clipRule="evenodd"
               ></path>
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

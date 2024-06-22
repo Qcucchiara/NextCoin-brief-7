@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 export const SectionAboutUs = () => {
@@ -6,18 +7,15 @@ export const SectionAboutUs = () => {
       <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
         <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
           <h2 className="mb-4 text-4xl font-extrabold text-gray-900 dark:text-white">
-            We didn't reinvent the wheel
+            I didn't reinvent the wheel
           </h2>
           <p className="mb-4">
-            We are strategists, designers and developers. Innovators and problem
-            solvers. Small enough to be simple and quick, but big enough to
-            deliver the scope you want at the pace you need. Small enough to be
-            simple and quick, but big enough to deliver the scope you want at
-            the pace you need.
+            It's a portfolio project to showcase basic front end skills, i tried
+            more advanced things on <Link href={'/test'}>this test page</Link>
           </p>
           <p>
-            We are strategists, designers and developers. Innovators and problem
-            solvers. Small enough to be simple and quick.
+            On this project i only did the front end, i used shadcn/ui for the
+            design
           </p>
         </div>
         <div className="grid grid-cols-2 gap-4 mt-8">

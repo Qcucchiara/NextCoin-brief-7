@@ -6,11 +6,13 @@ export const SectionFonctions = () => {
       <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
         <div className="max-w-screen-md mb-8 lg:mb-16">
           <h2 className="mb-4 text-4xl font-extrabold text-gray-900 dark:text-white">
-            Designed for business teams like yours
+            You can buy, sell and trade cryptos.
           </h2>
           <p className="text-gray-500 sm:text-xl dark:text-gray-400">
-            Here at Flowbite we focus on markets where technology, innovation,
-            and capital can unlock long-term value and drive economic growth.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint
+            suscipit consectetur omnis distinctio? Odio veritatis deleniti ea
+            necessitatibus tempora iure nam similique dolorem, velit quidem
+            iusto inventore beatae. Alias, rerum?
           </p>
         </div>
         <div className="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
@@ -29,13 +31,9 @@ export const SectionFonctions = () => {
                 ></path>
               </svg>
             </div>
-            <h3 className="mb-2 text-xl font-bold dark:text-white">
-              Marketing
-            </h3>
+            <h3 className="mb-2 text-xl font-bold dark:text-white">Tradding</h3>
             <p className="text-gray-500 dark:text-gray-400">
-              Plan it, create it, launch it. Collaborate seamlessly with all the
-              organization and hit your marketing goals every month with our
-              marketing plan.
+              You can use this plateform to trad yours cryptos as you want...
             </p>
           </div>
           <div>
@@ -51,8 +49,7 @@ export const SectionFonctions = () => {
             </div>
             <h3 className="mb-2 text-xl font-bold dark:text-white">Legal</h3>
             <p className="text-gray-500 dark:text-gray-400">
-              Protect your organization, devices and stay compliant with our
-              structured workflows and custom permissions made for you.
+              (it's not real cryptos, no real money is used)
             </p>
           </div>
           <div>
@@ -97,8 +94,7 @@ export const SectionFonctions = () => {
             </div>
             <h3 className="mb-2 text-xl font-bold dark:text-white">Finance</h3>
             <p className="text-gray-500 dark:text-gray-400">
-              Audit-proof software built for critical financial operations like
-              month-end close and quarterly budgeting.
+              you can check the balance of your account and your wallet
             </p>
           </div>
           <div>
@@ -116,8 +112,7 @@ export const SectionFonctions = () => {
               Enterprise Design
             </h3>
             <p className="text-gray-500 dark:text-gray-400">
-              Craft beautiful, delightful experiences for both marketing and
-              product with real cross-company collaboration.
+              for once it's not ugly
             </p>
           </div>
           <div>
@@ -139,8 +134,7 @@ export const SectionFonctions = () => {
               Operations
             </h3>
             <p className="text-gray-500 dark:text-gray-400">
-              Keep your company’s lights on with customizable, iterative, and
-              structured workflows built for all efficient teams and individual.
+              have a feedback on the response of yours orders
             </p>
           </div>
         </div>
